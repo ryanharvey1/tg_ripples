@@ -1,0 +1,109 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(lme4)
+library(lmerTest)
+library(MASS)
+```
+
+```{r}
+data <- read.csv('/Volumes/Seagate Backup Plus Drive/Projects/ClarkP30_Recordings/analysis/swr_data/post_processed/swr_df.csv')
+summary(data)
+
+```
+
+```{r}
+data$ripple_duration_log <- log(data$ripple_duration)
+
+m1 = lmer(ripple_duration_log ~ group + (1 | rat/session), data = data, REML=FALSE)
+m1.null = lmer(ripple_duration_log ~ 1 + (1 | rat/session), data = data, REML=FALSE)
+anova(m1.null, m1)  
+summary(m1)
+options(repr.plot.width = 4, repr.plot.height = 3)
+plot(m1)
+options(repr.plot.width = 4, repr.plot.height = 4)
+qqnorm(resid(m1))
+qqline(resid(m1))
+```
+
+```{r}
+
+data$peak_amplitude_log <- log(data$peak_amplitude)
+
+m1 = lmer(peak_amplitude_log ~ group + (1 | rat/session), data = data, REML=FALSE)
+m1.null = lmer(peak_amplitude_log ~ 1 + (1 | rat/session), data = data, REML=FALSE)
+anova(m1.null, m1)  
+summary(m1)
+options(repr.plot.width = 4, repr.plot.height = 3)
+
+plot(m1)
+options(repr.plot.width = 4, repr.plot.height = 4)
+qqnorm(resid(m1))
+qqline(resid(m1))
+```
+
+```{r}
+m1 = lmer(peak_freq ~ group + (1 | session), data = data, REML=FALSE)
+m1.null = lmer(peak_freq ~ 1 + (1 | session), data = data, REML=FALSE)
+anova(m1.null, m1)  
+summary(m1)
+options(repr.plot.width = 4, repr.plot.height = 3)
+plot(m1)
+options(repr.plot.width = 4, repr.plot.height = 4)
+qqnorm(resid(m1))
+qqline(resid(m1))
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
