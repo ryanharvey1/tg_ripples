@@ -119,11 +119,11 @@ def loadLFP(path, n_channels=90, channel=64, frequency=1250.0, precision='int16'
             return data,timestep # nts.TsdFrame(timestep, data, time_units = 's')
         
 def get_session_path(session):
-    f = h5py.File(session,'r')
+    f = h5py.File(session+'.mat','r')
     return f['session_path'][()].tobytes()[::2].decode()
 
 def load_position(session):
-    f = h5py.File(session,'r')
+    f = h5py.File(session+'.mat','r')
     # load frames [ts x y a s] 
     frames = np.transpose(np.array(f['frames']))
     return pd.DataFrame(frames,columns=['ts', 'x', 'y', 'hd', 'speed'])   
